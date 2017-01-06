@@ -2,12 +2,20 @@ package domain;
 
 public class Conta {
 	
+	private static int ultimoNumero = 0;
+	
+	private int numero;
 	private Titular titular;
 	private double saldo;
 	private String telefone;
 
-	public Conta(String titular) {
+	Conta(String titular) {
 		this.titular = new Titular(titular);
+		this.numero = obterNumero(); 
+	}
+
+	private int obterNumero() {
+		return ++Conta.ultimoNumero;
 	}
 	
 	public void depositar(double valor){
@@ -22,9 +30,17 @@ public class Conta {
 		return this.saldo;
 	}
 	
+	public int getNumero() {
+		return numero;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	
 	@Override
 	public String toString() {
-		return "Conta [titular=" + titular + ", saldo=" + saldo + "]";
+		return "Conta [n.= "+this.numero + " titular=" + titular + ", saldo=" + saldo + "]";
 	}
 	
 	
