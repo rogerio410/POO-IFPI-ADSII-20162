@@ -53,6 +53,11 @@ public class Candidato {
 		this.slogan = slogan;
 	}
 	
+	@Override
+	public String toString() {
+		return this.nome + " ("+ this.numero + ")";
+	}
+	
 	
 
 }

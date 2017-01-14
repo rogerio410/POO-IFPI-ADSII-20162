@@ -9,11 +9,19 @@ public class Eleicao {
 	private int qtdDiscentes;
 	private Candidato[] candidatos;
 	
-	public Eleicao(int qDoc, int qTae, int qDis) {
+	public Eleicao(int qCand, int qDoc, int qTae, int qDis) {
 		this.qtdDocentes = qDoc;
 		this.qtdTAE = qTae;
 		this.qtdDiscentes = qDis;
-		this.candidatos = new Candidato[3];
+		this.candidatos = new Candidato[qCand];
+	}
+	
+	public void setCampus(String campus) {
+		this.campus = campus;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	public boolean addCandidato(Candidato c){ //Decisao: o candidato já vem com votacao
@@ -27,11 +35,22 @@ public class Eleicao {
 		}
 		return false;
 	}
+	
+	public boolean removeCandidato(int index){
+		
+		if (index < 0 || index >= this.candidatos.length)
+			return false;
+		
+		this.candidatos[index] = null;
+		
+		return true;
+	}
 
 	private boolean numeroRepetido(Candidato c) {
 		for (Candidato candidato : candidatos) {
-			if (candidato.getNumero() == c.getNumero())
-				return true;
+			if (candidato != null)
+				if (candidato.getNumero() == c.getNumero())
+					return true;
 		}
 		return false;
 	}
@@ -67,7 +86,7 @@ public class Eleicao {
 	private double calculaPercentualSegmento(int votos, int total){
 		double percentual;
 		percentual = (double) votos / total * 1/3;
-		return percentual;
+		return percentual * 100;
 	}
 	
 	public Candidato vencedor(){
@@ -82,5 +101,67 @@ public class Eleicao {
 		}
 		return campeao;
 	}
+	
+	private boolean dadosConsistentes() {
+		//Numeros de votos superiores aos permitidos.
+		
+		int totalPermitido = this.qtdDocentes + this.qtdTAE + this.qtdDiscentes;
+		int totalSomado = 0;
+		int qtdCandidados = 0;
+		
+		for (Candidato c : candidatos) {
+			
+			if (c == null)
+				continue;
+			
+			int totalCandidato = c.getVotacao().getQtdVotoDocente() 
+					+ c.getVotacao().getQtdVotoTAE() 
+					+ c.getVotacao().getQtdVotoDiscente();
+			if (totalCandidato > totalPermitido)
+				return false;
+			
+			totalSomado += totalCandidato;
+			qtdCandidados++;
+		}
+		
+		if (totalSomado > totalPermitido)
+			return false;
+		
+		//Se nao há candidatos
+		if (qtdCandidados == 0)
+			return false;
+		
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		
+		if (!dadosConsistentes()){
+			return "Dados inconsistentes. ";
+		}
+		
+	 	String res = "Eleição " + this.nome + "\n\n";
+		res += "candidado / doc / tae / dic / % final \n";
+		
+		for (Candidato c : candidatos) {
+			double pDoc = percentualVotoDocente(c);
+			double pTae = percentualVotoTAE(c);
+			double pDisc = percentualVotoDiscente(c);
+			int qDoc = c.getVotacao().getQtdVotoDocente();
+			int qTae = c.getVotacao().getQtdVotoTAE();
+			int qDisc = c.getVotacao().getQtdVotoDiscente();
+			double total = percentualCandidato(c);
+			
+			res += String.format("%s / %.1f%%(%d) / %.1f%%(%d) / %.1f%%(%d)  == %.1f %%\n\n", c, pDoc, qDoc, pTae, qTae, pDisc, qDisc, total);
+			
+		}
+		
+		res += String.format("VENCENDOR: " + vencedor() + " --> %.1f %%", percentualCandidato(vencedor()) );
+		
+		return res;
+	}
+
+	
 
 }
