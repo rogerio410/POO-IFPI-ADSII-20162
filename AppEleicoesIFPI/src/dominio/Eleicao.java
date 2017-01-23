@@ -103,7 +103,8 @@ public class Eleicao {
 	}
 	
 	private boolean dadosConsistentes() {
-		//Numeros de votos superiores aos permitidos.
+		//Numeros de votos superiores aos permitidos individual ou globalmente.
+		//Se nao houver candidato tb.
 		
 		int totalPermitido = this.qtdDocentes + this.qtdTAE + this.qtdDiscentes;
 		int totalSomado = 0;
