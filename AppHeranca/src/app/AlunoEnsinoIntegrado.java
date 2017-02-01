@@ -1,5 +1,5 @@
 package app;
 
-public class AlunoEnsinoIntegrado {
+public class AlunoEnsinoIntegrado extends Aluno{
 
 }
