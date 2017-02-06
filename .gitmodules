@@ -1,0 +1,3 @@
+[submodule "AppForca"]
+	path = AppForca
+	url = https://github.com/rogerio410/forca.git
