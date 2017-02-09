@@ -1,16 +1,9 @@
 package app;
 
-import java.util.AbstractSet;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import modelos.Produto;
 
@@ -22,16 +15,37 @@ public class TesteProduto {
 		Produto bike = new Produto("Bike", 15);
 		Produto carro = new Produto("Etios", 700);
 		
-		List itens = new ArrayList<>();
+		List<Produto> itens = new ArrayList<>();
 		itens.add(carro);
 		itens.add(tv);
 		itens.add(bike);
 		itens.add(carro);
 		
 		Collections.sort(itens, Produto.BY_NAME_INVERSE);
+		//Traditional way.
+//		for(int i = 0; i < itens.size(); i++){
+//			Produto p = itens.get(i);
+//			System.out.println(p.getNome());
+//		}
 		
-		System.out.println(itens);
+		//Iterator.
+//		Iterator<Produto> iterator = itens.iterator();
+//		
+//		while (iterator.hasNext()){
+//			Produto p = iterator.next();
+//			System.out.println(p.getNome());
+//		}
+		
+		//Iterator pelo Foreach
+		for (Produto p : itens) {
+			System.out.println(p.getNome());
+		}
 		
 	}
 
 }
+
+
+
+
+
