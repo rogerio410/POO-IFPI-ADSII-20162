@@ -10,15 +10,15 @@ import java.util.List;
 
 public class Tarefa {
 
+    private int id;
     private String descricao;
     private double prioridade;
     private Calendar dataLimite;
-
     private String detalhes;
 
     private List<Atividade> itens;
 
-    public Tarefa(String descricao, int prioridade){
+    public Tarefa(String descricao, double prioridade){
         this.descricao = descricao;
         this.prioridade = prioridade;
     }
@@ -52,5 +52,50 @@ public class Tarefa {
         return Collections.unmodifiableList(itens);
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
 
+    public Calendar getDataLimite() {
+        return dataLimite;
+    }
+
+    public Long getPersistentDataLimite(){
+        if (this.dataLimite != null){
+            return  this.dataLimite.getTimeInMillis();
+        }
+        return null;
+    }
+
+    public void setDataLimite(Calendar dataLimite) {
+        this.dataLimite = dataLimite;
+    }
+
+
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(String detalhes) {
+        this.detalhes = detalhes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "id=" + id +
+                ", descricao='" + descricao + '\'' +
+                ", prioridade=" + prioridade +
+                ", detalhes='" + detalhes + '\'' +
+                '}';
+    }
 }
