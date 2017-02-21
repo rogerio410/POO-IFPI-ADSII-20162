@@ -56,7 +56,8 @@
             android:id="@+id/ed_task_data_limite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data Limite"/>
+            android:hint="Data Limite"
+            android:focusable="false"/>
 
     </android.support.design.widget.TextInputLayout>
 
