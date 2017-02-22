@@ -15,8 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FormTaskActivity"
-            android:parentActivityName=".ListTaskActivity"></activity>
+
+        <activity
+            android:name=".FormTaskActivity"
+            android:parentActivityName=".ListTaskActivity" />
+
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".ListTaskActivity" />
     </application>
 
 </manifest>

@@ -33,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int versaoAntiga, int versaoNova) {
         String sql = "DROP TABLE IF EXISTS " + TABELA_TAREFA;
         db.execSQL(sql);
         onCreate(db);

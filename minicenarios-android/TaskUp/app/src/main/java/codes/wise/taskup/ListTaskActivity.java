@@ -47,6 +47,10 @@ public class ListTaskActivity extends AppCompatActivity {
             case R.id.item_add_task:
                 addTask(null);
                 break;
+            case R.id.item_configuracoes:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
