@@ -90,8 +90,9 @@ public class FormTaskActivity extends AppCompatActivity {
         tarefa.setDetalhes(detalhes);
         tarefa.setDataLimite(dataLimite);
 
-        TarefaDAO dao = new TarefaDAO(this);
-        dao.inserir(tarefa);
+        //TarefaDAO dao = new TarefaDAO(this);
+        //dao.inserir(tarefa);
+        tarefa.save();
 
         Toast.makeText(this, "Tarefa salva", Toast.LENGTH_LONG).show();
         finish();

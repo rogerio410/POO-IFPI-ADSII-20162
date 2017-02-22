@@ -1,5 +1,6 @@
 package codes.wise.taskup.model;
 
+import com.orm.SugarRecord;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -10,15 +11,18 @@ import java.util.Locale;
  * Created by rogermac on 20/02/17.
  */
 
-public class Tarefa {
+public class Tarefa extends SugarRecord{
 
-    private int id;
     private String descricao;
     private double prioridade;
     private Calendar dataLimite;
     private String detalhes;
 
     private List<Atividade> itens;
+
+    public Tarefa(){
+
+    }
 
     public Tarefa(String descricao, double prioridade){
         this.descricao = descricao;
@@ -88,19 +92,10 @@ public class Tarefa {
         this.detalhes = detalhes;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
     @Override
     public String toString() {
         return "Tarefa{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", descricao='" + descricao + '\'' +
                 ", prioridade=" + prioridade +
                 ", dataLimite = " + getStringDataLimite() +

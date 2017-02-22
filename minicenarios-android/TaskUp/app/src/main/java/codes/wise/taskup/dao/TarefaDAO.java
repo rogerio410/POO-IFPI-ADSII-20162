@@ -41,7 +41,7 @@ public class TarefaDAO {
 
         List<Tarefa> tarefas = new ArrayList<>();
         while (c.moveToNext()){
-            int id = c.getInt(c.getColumnIndex("id"));
+            long id = c.getLong(c.getColumnIndex("id"));
             String descricao = c.getString(c.getColumnIndex("descricao"));
             double prioridade = c.getDouble(c.getColumnIndex("prioridade"));
             long dataLimite = c.getLong(c.getColumnIndex("dataLimite"));

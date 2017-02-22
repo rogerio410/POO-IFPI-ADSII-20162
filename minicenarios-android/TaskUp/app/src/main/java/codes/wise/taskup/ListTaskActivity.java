@@ -62,9 +62,9 @@ public class ListTaskActivity extends AppCompatActivity {
     }
 
     public void carregarTarefas(){
-        TarefaDAO dao = new TarefaDAO(this);
+        //TarefaDAO dao = new TarefaDAO(this);
 
-        List<Tarefa> tarefas = dao.todos();
+        List<Tarefa> tarefas = Tarefa.listAll(Tarefa.class);  //dao.todos();
         ArrayAdapter<Tarefa> adapter = new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
 
         lstTarefas.setAdapter(adapter);
