@@ -2,6 +2,7 @@ package codes.wise.taskup.model;
 
 import com.orm.SugarRecord;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Tarefa extends SugarRecord{
     private Calendar dataLimite;
     private String detalhes;
 
-    private List<Atividade> itens;
+    private List<Atividade> itens = new ArrayList<>();
 
     public Tarefa(){
 
@@ -52,6 +53,7 @@ public class Tarefa extends SugarRecord{
             throw new RuntimeException("Limite 100% da Tarefa ultrapassado");
 
         this.itens.add(atividade);
+        atividade.setTarefa(this);
     }
 
     public List<Atividade> getItens() {

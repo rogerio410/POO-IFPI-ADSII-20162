@@ -1,16 +1,21 @@
 package codes.wise.taskup.model;
 
+import com.orm.SugarRecord;
+
 import java.util.Calendar;
 
 /**
  * Created by rogermac on 20/02/17.
  */
 
-public class Atividade {
+public class Atividade extends SugarRecord{
 
     private String descricao;
     private int percentual; //Qual fatia representa da Tarefa Mãe.
     private Calendar data;
+    private Tarefa tarefa;
+
+    public Atividade(){}
 
     public Atividade(String descricao, int percentual){
         this.descricao = descricao;
@@ -36,5 +41,21 @@ public class Atividade {
 
     public int getPercentual() {
         return percentual;
+    }
+
+    public void setTarefa(Tarefa tarefa) {
+        this.tarefa = tarefa;
+    }
+
+    public Tarefa getTarefa() {
+        return tarefa;
+    }
+
+    @Override
+    public String toString() {
+        return "Atividade{" +
+                "percentual=" + percentual +
+                ", descricao='" + descricao + '\'' +
+                '}';
     }
 }

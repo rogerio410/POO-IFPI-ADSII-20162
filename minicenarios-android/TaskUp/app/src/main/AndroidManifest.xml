@@ -3,12 +3,16 @@
     package="codes.wise.taskup">
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name="com.orm.SugarApp"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
+
+        <meta-data android:name="VERSION" android:value="9" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
 
         <activity android:name=".ListTaskActivity">
             <intent-filter>
@@ -22,9 +26,12 @@
             android:name=".FormTaskActivity"
             android:parentActivityName=".ListTaskActivity" />
 
-        <activity android:name=".SettingsActivity"
+        <activity
+            android:name=".SettingsActivity"
             android:parentActivityName=".ListTaskActivity" />
 
+        <activity android:name=".ShowTaskActivity"
+            android:parentActivityName=".ListTaskActivity"/>
     </application>
 
 </manifest>

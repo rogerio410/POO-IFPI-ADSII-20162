@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,14 +18,27 @@ import codes.wise.taskup.model.Tarefa;
 
 public class ListTaskActivity extends AppCompatActivity {
 
-    ListView lstTarefas;
+    private ListView mlvTarefas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_task);
 
-        lstTarefas = (ListView) findViewById(R.id.lst_tarefas);
+        mlvTarefas = (ListView) findViewById(R.id.lst_tarefas);
+
+        mlvTarefas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+
+                Tarefa tarefa = (Tarefa) adapterView.getItemAtPosition(pos);
+
+                Intent intent = new Intent(ListTaskActivity.this, ShowTaskActivity.class);
+                intent.putExtra("tarefa_id", tarefa.getId());
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -67,6 +82,6 @@ public class ListTaskActivity extends AppCompatActivity {
         List<Tarefa> tarefas = Tarefa.listAll(Tarefa.class);  //dao.todos();
         ArrayAdapter<Tarefa> adapter = new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
 
-        lstTarefas.setAdapter(adapter);
+        mlvTarefas.setAdapter(adapter);
     }
 }

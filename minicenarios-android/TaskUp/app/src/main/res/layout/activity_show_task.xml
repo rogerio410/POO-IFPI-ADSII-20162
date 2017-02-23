@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_show_task"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="codes.wise.taskup.ShowTaskActivity">
+
+    <TextView
+        android:id="@+id/tv_task_descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_green_dark"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_task_dataLimite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@android:color/holo_green_light"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atividades"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/lv_task_atividades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nova Atividade"
+        android:onClick="addAtividade"/>
+
+</LinearLayout>
