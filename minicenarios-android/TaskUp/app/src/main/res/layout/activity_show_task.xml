@@ -42,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nova Atividade"
-        android:onClick="addAtividade"/>
+        android:onClick="addAtividade"
+        style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
 </LinearLayout>
