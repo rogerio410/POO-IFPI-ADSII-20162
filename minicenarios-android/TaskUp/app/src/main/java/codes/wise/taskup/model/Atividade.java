@@ -10,7 +10,7 @@ import java.util.Locale;
  * Created by rogermac on 20/02/17.
  */
 
-public class Atividade extends SugarRecord{
+public class Atividade extends SugarRecord {
 
     private String descricao;
     private int percentual; //Qual fatia representa da Tarefa Mãe.

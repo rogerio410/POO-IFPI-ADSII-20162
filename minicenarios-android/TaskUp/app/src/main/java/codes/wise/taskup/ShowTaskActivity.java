@@ -18,10 +18,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import codes.wise.taskup.adapter.CardViewAtividade;
 import codes.wise.taskup.adapter.ListTaskAtividadesAdapter;
 import codes.wise.taskup.model.Atividade;
 import codes.wise.taskup.model.Tarefa;
@@ -38,6 +41,8 @@ public class ShowTaskActivity extends AppCompatActivity {
     private RecyclerView mRecyclerAtividades;
     private RecyclerView.Adapter mRecyclerAdapter;
     private RecyclerView.LayoutManager mRecyclerLayoutMananger;
+
+    private FastItemAdapter<CardViewAtividade> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +99,12 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         //mLvAtividades.setAdapter(adapter);
 
-        mRecyclerAdapter = new ListTaskAtividadesAdapter(atividades);
-        mRecyclerAtividades.setAdapter(mRecyclerAdapter);
+//        mRecyclerAdapter = new ListTaskAtividadesAdapter(atividades, null);
+//        mRecyclerAtividades.setAdapter(mRecyclerAdapter);
+
+        adapter = new FastItemAdapter<>();
+        for (Atividade atividade : atividades) {adapter.add(new CardViewAtividade(atividade));}
+        mRecyclerAtividades.setAdapter(adapter);
     }
 
     public void addAtividade(View view) {

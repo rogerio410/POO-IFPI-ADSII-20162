@@ -19,6 +19,7 @@ import codes.wise.taskup.model.Atividade;
 public class ListTaskAtividadesAdapter extends RecyclerView.Adapter<ListTaskAtividadesAdapter.ViewHolder> {
 
     private List<Atividade> atividades;
+    private View.OnClickListener onClickListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -33,27 +34,38 @@ public class ListTaskAtividadesAdapter extends RecyclerView.Adapter<ListTaskAtiv
 
     }
 
-    public ListTaskAtividadesAdapter(List<Atividade> atividades){
+    public ListTaskAtividadesAdapter(List<Atividade> atividades, View.OnClickListener clickListener){
         this.atividades = atividades;
+        this.onClickListener = clickListener;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        };
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View card = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_atividade_adapter, parent, false);
-
+        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_atividade_adapter, parent, false);
+        card.findViewById(R.id.tv_atividade_percentual).setOnClickListener(getOnClickListener());
         ViewHolder vh = new ViewHolder(card);
-
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Atividade atividade = atividades.get(position);
-
-        holder.tvAtividadeDescricao.setText(atividade.getDescricao());
+        setupDescricao(holder.tvAtividadeDescricao, atividade);
         holder.tvAtividadePercentual.setText(String.valueOf(atividade.getPercentual()));
+    }
+
+    private void setupDescricao(TextView tvAtividadeDescricao, Atividade atividade) {
+        tvAtividadeDescricao.setOnClickListener(getOnClickListener());
+        tvAtividadeDescricao.setText(atividade.getDescricao());
     }
 
     @Override
