@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import codes.wise.taskup.R;
@@ -38,23 +40,27 @@ public class ListTaskAdapter extends ArrayAdapter<Tarefa> {
         final TextView tvDescricao;
         final TextView tvPrioridade;
         final TextView tvDataLimite;
+        final TextView tvPercentual;
         final Tarefa tarefa;
 
         if (convertView == null){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.list_task_adapter, parent, false);
+            convertView = inflater.inflate(this.resource, parent, false);
 
             tvDescricao = (TextView) convertView.findViewById(R.id.tv_task_descricao);
             tvDataLimite = (TextView) convertView.findViewById(R.id.tv_task_dataLimite);
             tvPrioridade = (TextView) convertView.findViewById(R.id.tv_task_prioridade);
+            tvPercentual = (TextView) convertView.findViewById(R.id.tv_task_percentual);
 
             convertView.setTag(R.id.tv_task_descricao, tvDescricao);
             convertView.setTag(R.id.tv_task_dataLimite, tvDataLimite);
             convertView.setTag(R.id.tv_task_prioridade, tvPrioridade);
+            convertView.setTag(R.id.tv_task_percentual, tvPercentual);
         }else{
             tvDescricao = (TextView) convertView.getTag(R.id.tv_task_descricao);
             tvPrioridade = (TextView) convertView.getTag(R.id.tv_task_prioridade);
             tvDataLimite = (TextView) convertView.getTag(R.id.tv_task_dataLimite);
+            tvPercentual = (TextView) convertView.getTag(R.id.tv_task_percentual);
         }
 
         tarefa = this.tarefas.get(position);
@@ -62,6 +68,7 @@ public class ListTaskAdapter extends ArrayAdapter<Tarefa> {
         tvDescricao.setText(tarefa.getDescricao());
         tvDataLimite.setText(tarefa.getStringDataLimite());
         tvPrioridade.setText(String.valueOf(tarefa.getPrioridade()));
+        tvPercentual.setText(String.valueOf(tarefa.getPercentualConclucao()) + "%");
 
         return convertView;
     }

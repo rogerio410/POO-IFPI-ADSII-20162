@@ -41,8 +41,11 @@ public class Tarefa extends SugarRecord{
     public int getPercentualConclucao(){
         int percentual = 0;
 
-        for (Atividade a: this.itens)
-            percentual += a.getPercentual();
+        for (Atividade a: this.itens){
+            if (a.isConcluida())
+                percentual += a.getPercentual();
+        }
+
 
         return percentual;
     }
