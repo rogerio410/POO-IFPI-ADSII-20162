@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import codes.wise.taskup.adapter.ListTaskAtividadesAdapter;
 import codes.wise.taskup.model.Atividade;
 import codes.wise.taskup.model.Tarefa;
 
@@ -31,6 +34,10 @@ public class ShowTaskActivity extends AppCompatActivity {
     private TextView mTvTarefaDescricao;
     private TextView mTvTarefaDataLimite;
     private ListView mLvAtividades;
+
+    private RecyclerView mRecyclerAtividades;
+    private RecyclerView.Adapter mRecyclerAdapter;
+    private RecyclerView.LayoutManager mRecyclerLayoutMananger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +54,14 @@ public class ShowTaskActivity extends AppCompatActivity {
         //Binding
         mTvTarefaDescricao = (TextView) findViewById(R.id.tv_task_descricao);
         mTvTarefaDataLimite = (TextView) findViewById(R.id.tv_task_dataLimite);
-        mLvAtividades = (ListView) findViewById(R.id.lv_task_atividades);
+        //mLvAtividades = (ListView) findViewById(R.id.lv_task_atividades);
 
         //Preencher dados
         mTvTarefaDescricao.setText(mtarefa.getDescricao());
         mTvTarefaDataLimite.setText(mtarefa.getStringDataLimite());
 
         //Selecionar Atividade
-        mLvAtividades.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*mLvAtividades.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 mSelectedAtividade = (Atividade) adapterView.getItemAtPosition(pos);
@@ -63,7 +70,13 @@ public class ShowTaskActivity extends AppCompatActivity {
         });
 
         //Registrar para Menu de Contexto
-        registerForContextMenu(mLvAtividades);
+        registerForContextMenu(mLvAtividades);*/
+
+        //For RecycleView/CardView
+        mRecyclerAtividades = (RecyclerView) findViewById(R.id.rv_task_atividades);
+
+        mRecyclerLayoutMananger = new LinearLayoutManager(this);
+        mRecyclerAtividades.setLayoutManager(mRecyclerLayoutMananger);
 
     }
 
@@ -77,9 +90,12 @@ public class ShowTaskActivity extends AppCompatActivity {
 
     private void carregarAtividades() {
         List<Atividade> atividades = Atividade.find(Atividade.class, "tarefa = ?", String.valueOf(mtarefa.getId()));
-        ArrayAdapter<Atividade> adapter = new ArrayAdapter<Atividade>(this, android.R.layout.simple_list_item_1, atividades);
+        //ArrayAdapter<Atividade> adapter = new ArrayAdapter<Atividade>(this, android.R.layout.simple_list_item_1, atividades);
 
-        mLvAtividades.setAdapter(adapter);
+        //mLvAtividades.setAdapter(adapter);
+
+        mRecyclerAdapter = new ListTaskAtividadesAdapter(atividades);
+        mRecyclerAtividades.setAdapter(mRecyclerAdapter);
     }
 
     public void addAtividade(View view) {

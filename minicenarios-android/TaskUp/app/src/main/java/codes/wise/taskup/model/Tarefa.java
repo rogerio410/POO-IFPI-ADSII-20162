@@ -1,6 +1,8 @@
 package codes.wise.taskup.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,6 +21,7 @@ public class Tarefa extends SugarRecord{
     private Calendar dataLimite;
     private String detalhes;
 
+    @Ignore
     private List<Atividade> itens = new ArrayList<>();
 
     public Tarefa(){
