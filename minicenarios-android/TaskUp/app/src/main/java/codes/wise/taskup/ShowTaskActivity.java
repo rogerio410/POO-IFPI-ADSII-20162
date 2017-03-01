@@ -93,7 +93,7 @@ public class ShowTaskActivity extends AppCompatActivity {
 
     }
 
-    private void carregarAtividades() {
+    public void carregarAtividades() {
         List<Atividade> atividades = Atividade.find(Atividade.class, "tarefa = ?", String.valueOf(mtarefa.getId()));
         //ArrayAdapter<Atividade> adapter = new ArrayAdapter<Atividade>(this, android.R.layout.simple_list_item_1, atividades);
 
@@ -103,7 +103,7 @@ public class ShowTaskActivity extends AppCompatActivity {
 //        mRecyclerAtividades.setAdapter(mRecyclerAdapter);
 
         adapter = new FastItemAdapter<>();
-        for (Atividade atividade : atividades) {adapter.add(new CardViewAtividade(atividade));}
+        for (Atividade atividade : atividades) {adapter.add(new CardViewAtividade(atividade, this));}
         mRecyclerAtividades.setAdapter(adapter);
     }
 
