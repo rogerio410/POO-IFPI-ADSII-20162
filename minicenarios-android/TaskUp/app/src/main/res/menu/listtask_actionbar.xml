@@ -4,7 +4,7 @@
 
     <item android:id="@+id/item_add_task"
         android:title="Nova Tarefa"
-        android:icon="@drawable/add_task"
+        android:icon="@drawable/plus"
         app:showAsAction="always"/>
 
     <item android:id="@+id/item_configuracoes"

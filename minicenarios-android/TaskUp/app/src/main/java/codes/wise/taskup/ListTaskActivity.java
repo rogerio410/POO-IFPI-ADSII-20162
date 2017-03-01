@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import codes.wise.taskup.adapter.ListTaskAdapter;
 import codes.wise.taskup.dao.TarefaDAO;
 import codes.wise.taskup.model.Tarefa;
 
@@ -80,7 +81,7 @@ public class ListTaskActivity extends AppCompatActivity {
         //TarefaDAO dao = new TarefaDAO(this);
 
         List<Tarefa> tarefas = Tarefa.listAll(Tarefa.class);  //dao.todos();
-        ArrayAdapter<Tarefa> adapter = new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
+        ArrayAdapter<Tarefa> adapter = new ListTaskAdapter(this, R.layout.list_task_adapter, tarefas); //new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
 
         mlvTarefas.setAdapter(adapter);
     }
