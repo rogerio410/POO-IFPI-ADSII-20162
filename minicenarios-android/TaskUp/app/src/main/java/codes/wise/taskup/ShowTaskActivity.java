@@ -18,10 +18,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import codes.wise.taskup.adapter.CardViewAtividade;
 import codes.wise.taskup.adapter.ListTaskAtividadesAdapter;
 import codes.wise.taskup.model.Atividade;
 import codes.wise.taskup.model.Tarefa;
@@ -33,11 +36,13 @@ public class ShowTaskActivity extends AppCompatActivity {
 
     private TextView mTvTarefaDescricao;
     private TextView mTvTarefaDataLimite;
-    private ListView mLvAtividades;
+    //private ListView mLvAtividades;
 
     private RecyclerView mRecyclerAtividades;
     private RecyclerView.Adapter mRecyclerAdapter;
     private RecyclerView.LayoutManager mRecyclerLayoutMananger;
+
+    private FastItemAdapter<CardViewAtividade> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,6 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         //For RecycleView/CardView
         mRecyclerAtividades = (RecyclerView) findViewById(R.id.rv_task_atividades);
-
         mRecyclerLayoutMananger = new LinearLayoutManager(this);
         mRecyclerAtividades.setLayoutManager(mRecyclerLayoutMananger);
 
@@ -88,14 +92,20 @@ public class ShowTaskActivity extends AppCompatActivity {
 
     }
 
-    private void carregarAtividades() {
+    public void carregarAtividades() {
         List<Atividade> atividades = Atividade.find(Atividade.class, "tarefa = ?", String.valueOf(mtarefa.getId()));
         //ArrayAdapter<Atividade> adapter = new ArrayAdapter<Atividade>(this, android.R.layout.simple_list_item_1, atividades);
 
         //mLvAtividades.setAdapter(adapter);
 
-        mRecyclerAdapter = new ListTaskAtividadesAdapter(atividades);
-        mRecyclerAtividades.setAdapter(mRecyclerAdapter);
+//        mRecyclerAdapter = new ListTaskAtividadesAdapter(atividades, null);
+//        mRecyclerAtividades.setAdapter(mRecyclerAdapter);
+
+        adapter = new FastItemAdapter<>();
+        for (Atividade atividade : atividades) {
+            adapter.add(new CardViewAtividade(atividade, this));
+        }
+        mRecyclerAtividades.setAdapter(adapter);
     }
 
     public void addAtividade(View view) {
@@ -136,7 +146,6 @@ public class ShowTaskActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Cancelar", null)
                 .show();
-
     }
 
     @Override

@@ -39,20 +39,14 @@ public class ListTaskAtividadesAdapter extends RecyclerView.Adapter<ListTaskAtiv
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View card = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_atividade_adapter, parent, false);
-
+        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_atividade_adapter, parent, false);
         ViewHolder vh = new ViewHolder(card);
-
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Atividade atividade = atividades.get(position);
-
-        holder.tvAtividadeDescricao.setText(atividade.getDescricao());
         holder.tvAtividadePercentual.setText(String.valueOf(atividade.getPercentual()));
     }
 
