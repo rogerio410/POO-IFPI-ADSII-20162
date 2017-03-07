@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import codes.wise.taskup.adapter.ListTaskAdapter;
-import codes.wise.taskup.dao.TarefaDAO;
-import codes.wise.taskup.model.Atividade;
+import codes.wise.taskup.dao.TarefaRepository;
 import codes.wise.taskup.model.Tarefa;
 
 public class ListTaskActivity extends AppCompatActivity {
@@ -81,15 +79,17 @@ public class ListTaskActivity extends AppCompatActivity {
     public void carregarTarefas(){
         //TarefaDAO dao = new TarefaDAO(this);
 
-        List<Tarefa> tarefas = Tarefa.listAll(Tarefa.class);  //dao.todos();
-        //TODO: Resolver(melhorar um pouco) com Repository
-        for (Tarefa t : tarefas){
+        //List<Tarefa> tarefas = Tarefa.listAll(Tarefa.class);  //dao.todos();
+
+        /*for (Tarefa t : tarefas){
             List<Atividade> atividades = Atividade.find(Atividade.class, "tarefa = ?", String.valueOf(t.getId()));
             for (Atividade a: atividades) {
                 t.addItem(a);
             }
-        }
+        }*/
 
+        TarefaRepository dao = new TarefaRepository(Tarefa.class);
+        List<Tarefa> tarefas = dao.all();
         ArrayAdapter<Tarefa> adapter = new ListTaskAdapter(this, R.layout.list_task_adapter, tarefas); //new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
 
         mlvTarefas.setAdapter(adapter);
