@@ -1,8 +1,6 @@
 package codes.wise.taskup.adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import java.util.List;
 
 import codes.wise.taskup.ListTaskActivity;
 import codes.wise.taskup.R;
-import codes.wise.taskup.ShowTaskActivity;
 import codes.wise.taskup.model.Tarefa;
 
 /**
@@ -52,7 +49,7 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public RecyclerViewListTaskAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Responsavel por inflar o layout dos itens
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_task_adapter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_adapter, parent, false);
 
         ViewHolder vh = new ViewHolder(view);
 

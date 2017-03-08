@@ -101,7 +101,7 @@ public class ListTaskActivity extends AppCompatActivity {
 
         TarefaRepository dao = new TarefaRepository(Tarefa.class);
         List<Tarefa> tarefas = dao.all();
-        /*ArrayAdapter<Tarefa> adapter = new ListTaskAdapter(this, R.layout.list_task_adapter, tarefas); //new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
+        /*ArrayAdapter<Tarefa> adapter = new ListTaskAdapter(this, R.layout.item_task_adapter, tarefas); //new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
 
         mlvTarefas.setAdapter(adapter);*/
         rvTarefas.setHasFixedSize(true);

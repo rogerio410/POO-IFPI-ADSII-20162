@@ -1,6 +1,5 @@
 package codes.wise.taskup.adapter;
 
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +38,7 @@ public class ListTaskAtividadesAdapter extends RecyclerView.Adapter<ListTaskAtiv
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_atividade_adapter, parent, false);
+        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_atividade_adapter, parent, false);
         ViewHolder vh = new ViewHolder(card);
         return vh;
     }
