@@ -2,6 +2,7 @@
     <string name="app_name">TaskUp</string>
     <string name="percentual">%d%%</string>
     <string name="dataConclusao">Concluído em: %s</string>
+    <string name="save">Salvar</string>
 
     <string-array name="prioridades_arrays">
         <item>1</item>

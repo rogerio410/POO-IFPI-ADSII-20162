@@ -8,20 +8,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.gildaswise.horizontalcounter.HorizontalCounter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import codes.wise.taskup.dao.TarefaDAO;
 import codes.wise.taskup.model.Tarefa;
 
 public class FormTaskActivity extends AppCompatActivity {
 
     private EditText edDescricao;
-    private Spinner spPrioridade;
+    private HorizontalCounter hcPrioridade;
     private EditText edDetalhes;
     private EditText edDataLimite;
     private Calendar dataLimite;
@@ -32,7 +32,7 @@ public class FormTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_task);
 
         edDescricao = (EditText) findViewById(R.id.ed_task_descricao);
-        spPrioridade = (Spinner) findViewById(R.id.sp_task_prioridade);
+        hcPrioridade = (HorizontalCounter) findViewById(R.id.hc_task_prioridade);
         edDetalhes = (EditText) findViewById(R.id.ed_task_detalhes);
         edDataLimite = (EditText) findViewById(R.id.ed_task_data_limite);
 
@@ -83,7 +83,7 @@ public class FormTaskActivity extends AppCompatActivity {
     public void saveTask(MenuItem item) {
 
         String descricao = edDescricao.getText().toString();
-        double prioridade = Double.valueOf(spPrioridade.getSelectedItem().toString());
+        double prioridade = Double.valueOf(hcPrioridade.getCurrentValue());
         String detalhes = edDetalhes.getText().toString();
 
         Tarefa tarefa = new Tarefa(descricao, prioridade);
