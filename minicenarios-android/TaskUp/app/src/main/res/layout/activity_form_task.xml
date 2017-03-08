@@ -5,6 +5,7 @@
     android:id="@+id/activity_form_task"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:orientation="vertical"
     tools:context="codes.wise.taskup.FormTaskActivity">
 

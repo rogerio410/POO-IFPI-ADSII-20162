@@ -70,9 +70,6 @@ public class ListTaskActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.item_add_task:
-                addTask(null);
-                break;
             case R.id.item_configuracoes:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
