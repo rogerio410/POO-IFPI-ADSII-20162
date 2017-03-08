@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/form_confirm"
-        android:icon="@drawable/check"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
+        android:title="@string/save"
         android:onClick="saveTask"></item>
 
 </menu>
