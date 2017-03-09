@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="save">Save</string>
+    <string name="my_tasks">My Tasks</string>
+    <string name="dataConclusao">Finished at: %s</string>
+    <string name="new_activity">New Activity</string>
+    <string name="percent">Percent</string>
+    <string name="cancel">Cancel</string>
+    <string name="description">Description</string>
+    <string name="task">Task</string>
+    <string name="priority">Priority</string>
+    <string name="due_date">Due Date</string>
+    <string name="details">Details</string>
+    <string name="activity_list">Activities List</string>
+    <string name="new_task">New Task</string>
+    <string name="portuguese">Português</string>
+    <string name="english">English</string>
+    <string name="idiom">Idiom</string>
+    <string name="name">Name</string>
+</resources>

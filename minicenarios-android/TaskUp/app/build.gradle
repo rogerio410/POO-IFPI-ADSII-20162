@@ -45,6 +45,6 @@ dependencies {
     compile 'com.mikepenz:materialize:1.0.0@aar'
 
     //Lib do Gildasio
-    compile 'com.github.gildaswise:HorizontalCounter:1.0.1'
+    compile 'com.github.gildaswise:HorizontalCounter:1.0.2'
 
 }

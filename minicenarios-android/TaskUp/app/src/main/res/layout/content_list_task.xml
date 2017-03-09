@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:layout_margin="8dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:textStyle="bold"
         android:textColor="@android:color/holo_blue_light"
         android:fontFamily="casual"
-        android:text="Minhas Tarefas" />
+        android:text="@string/my_tasks" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lst_tarefas"

@@ -1,13 +1,28 @@
 <resources>
-    <string name="app_name">TaskUp</string>
-    <string name="percentual">%d%%</string>
+    <string name="app_name" translatable="false">TaskUp</string>
+    <string name="percentual" translatable="false">%d%%</string>
     <string name="dataConclusao">Concluído em: %s</string>
     <string name="save">Salvar</string>
+    <string name="my_tasks">Minhas Tarefas</string>
+    <string name="new_activity">Nova Atividade</string>
 
     <string-array name="prioridades_arrays">
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string name="description">Descrição</string>
+    <string name="percent">Percentual</string>
+    <string name="cancel">Cancelar</string>
+    <string name="task">Tarefa</string>
+    <string name="priority">Prioridade</string>
+    <string name="due_date">Data Limite</string>
+    <string name="details">Detalhes</string>
+    <string name="activity_list">Lista de Atividades</string>
+    <string name="new_task">Nova Tarefa</string>
+    <string name="name">Nome</string>
+    <string name="idiom">Idioma</string>
+    <string name="portuguese">Português</string>
+    <string name="english">English</string>
 
 </resources>

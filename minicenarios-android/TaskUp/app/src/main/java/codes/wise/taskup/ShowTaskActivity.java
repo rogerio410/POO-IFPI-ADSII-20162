@@ -125,8 +125,8 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         //Settar a View(com o Layout) e demais propriedades
         builder.setView(dialogView)
-                .setTitle("Nova Atividade")
-                .setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.new_activity)
+                .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -144,7 +144,7 @@ public class ShowTaskActivity extends AppCompatActivity {
 
                     }
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.cancel, null)
                 .show();
     }
 

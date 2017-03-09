@@ -12,7 +12,7 @@
             android:id="@+id/ed_atividade_descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrição da Atividade"/>
+            android:hint="@string/description"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -24,7 +24,7 @@
             android:id="@+id/ed_atividade_percentual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Percentual"
+            android:hint="@string/percent"
             android:inputType="number"/>
 
     </android.support.design.widget.TextInputLayout>

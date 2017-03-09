@@ -9,13 +9,6 @@
     android:orientation="vertical"
     tools:context="codes.wise.taskup.FormTaskActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:text="Tarefa"/>
-
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +17,7 @@
             android:id="@+id/ed_task_descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrição"/>
+            android:hint="@string/description"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -39,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prioridade"
+            android:text="@string/priority"
             android:textSize="16sp"/>
 
         <com.gildaswise.horizontalcounter.HorizontalCounter
@@ -62,7 +55,7 @@
             android:id="@+id/ed_task_data_limite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data Limite"
+            android:hint="@string/due_date"
             android:focusable="false"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -76,7 +69,7 @@
             android:id="@+id/ed_task_detalhes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Detalhes"/>
+            android:hint="@string/details"/>
 
     </android.support.design.widget.TextInputLayout>
 
