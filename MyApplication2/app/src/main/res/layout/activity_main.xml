@@ -44,9 +44,6 @@
         android:text="Abrir Tela2(Guilherme)"
         android:onClick="abrirTela2"/>
 
-
-
-
 </LinearLayout>
 
 
