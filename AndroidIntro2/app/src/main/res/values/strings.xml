@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidIntro2</string>
+
+    <string-array name="produtos">
+        <item>Leite</item>
+        <item>Arroz</item>
+        <item>Peixe</item>
+        <item>Banana</item>
+    </string-array>
+</resources>
