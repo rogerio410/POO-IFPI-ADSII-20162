@@ -2,11 +2,6 @@
     <string name="app_name">AndroidIntro</string>
     <string name="btn_send">SEND</string>
     <string name="segunda_tela">SEGUNDA TELA</string>
-
-    <string-array name="skills">
-        <item>Android</item>
-        <item>Java</item>
-        <item>Python</item>
-        <item>Unity</item>
-    </string-array>
+    <string name="cancelar">Cancelar</string>
+    <string name="salvar">Salvar</string>
 </resources>

@@ -27,8 +27,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "prioridade FLOAT, " +
                 "dataLimite DATE, " +
                 "detalhes VARCHAR);";
-
-
         db.execSQL(sql);
     }
 
