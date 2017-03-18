@@ -1,17 +1,22 @@
 package codes.wise.androidintro2.models;
 
+import com.orm.SugarRecord;
+
 /**
  * Created by rogermac on 15/03/17.
  */
 
-public class Produto {
+public class Produto extends SugarRecord{
 
-    private long id;
     private String nome;
     private double preco;
 
-    public Produto(long id, String nome, double preco) {
-        this.id = id;
+    private boolean removido;
+
+    public Produto() {
+    }
+
+    public Produto( String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
     }
@@ -19,7 +24,7 @@ public class Produto {
     @Override
     public String toString() {
         return "Produto{" +
-                "id='" + id + '\'' +
+                "id='" + getId() + '\'' +
                 ", nome='" + nome + '\'' +
                 ", preco=" + preco +
                 '}';
