@@ -1,15 +1,18 @@
 package codes.wise.androidintro2;
 
 import android.content.DialogInterface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private ListView lvProdutos;
-    private TextView tvHello;
     private Produto produtoSelecionado;
 
     @Override
@@ -33,34 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Binding
         lvProdutos = (ListView) findViewById(R.id.lv_produtos);
-        tvHello = (TextView) findViewById(R.id.tv_hello);
-
-        List<Produto> produtos = new ArrayList<>();
-            produtos.add(new Produto(1, "Leite", 13.99));
-            produtos.add(new Produto(2, "Fralda", 30.99));
-            produtos.add(new Produto(3, "Neston", 17.99));
-            produtos.add(new Produto(4, "Anador", 1.99));
-            produtos.add(new Produto(1, "Leite", 13.99));
-            produtos.add(new Produto(2, "Fralda", 30.99));
-            produtos.add(new Produto(3, "Neston", 17.99));
-            produtos.add(new Produto(4, "Anador", 1.99));
-            produtos.add(new Produto(1, "Leite", 13.99));
-            produtos.add(new Produto(2, "Fralda", 30.99));
-            produtos.add(new Produto(3, "Neston", 17.99));
-            produtos.add(new Produto(4, "Anador", 1.99));
-            produtos.add(new Produto(1, "Leite", 13.99));
-            produtos.add(new Produto(2, "Fralda", 30.99));
-            produtos.add(new Produto(3, "Neston", 17.99));
-            produtos.add(new Produto(4, "Anador", 1.99));
-            produtos.add(new Produto(1, "Leite", 13.99));
-            produtos.add(new Produto(2, "Fralda", 30.99));
-            produtos.add(new Produto(3, "Neston", 17.99));
-            produtos.add(new Produto(4, "Anador", 1.99));
-
-        ArrayAdapter<Produto> adapter =
-                new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_1, produtos);
-
-        lvProdutos.setAdapter(adapter);
 
         //Listeners
         lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,9 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
         //...
         registerForContextMenu(lvProdutos);
-        registerForContextMenu(tvHello);
 
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadProdutos();
     }
 
     @Override
@@ -109,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                                 .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        produtoSelecionado.delete();
+                                        loadProdutos();
                                         Toast.makeText(MainActivity.this, "Removido", Toast.LENGTH_SHORT).show();
                                     }
                                 })
@@ -135,23 +115,75 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 break;
-            case R.id.tv_hello:
-                MenuItem fechar = menu.add("Fechar App");
-                fechar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        finish();
-                        return false;
-                    }
-                });
-
-                break;
         }
 
+    }
+
+    public void novoProduto(View view) {
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View viewDialog = inflater.inflate(R.layout.form_dialog, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setView(viewDialog)
+                .setTitle("Novo Produto")
+                .setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        EditText edNome = (EditText) viewDialog.findViewById(R.id.ed_produto_nome);
+                        EditText edPreco = (EditText) viewDialog.findViewById(R.id.ed_produto_preco);
+
+                        String nome = edNome.getText().toString();
+                        double preco = Double.valueOf(edPreco.getText().toString());
+
+                        Produto produto = new Produto(nome, preco);
+
+                        produto.save();
+
+                        loadProdutos();
+
+                        Toast.makeText(MainActivity.this, "Produto Salvo", Toast.LENGTH_LONG).show();
+
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
 
 
     }
+
+    private void loadProdutos() {
+
+        List<Produto> produtos = Produto.listAll(Produto.class);
+
+        ArrayAdapter<Produto> adapter =
+                new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_1, produtos);
+
+        lvProdutos.setAdapter(adapter);
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
