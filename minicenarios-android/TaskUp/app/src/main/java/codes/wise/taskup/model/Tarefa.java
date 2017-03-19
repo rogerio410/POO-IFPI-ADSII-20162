@@ -55,8 +55,8 @@ public class Tarefa extends SugarRecord{
 
     public void addItem(Atividade atividade){
 
-        if (getPercentualConclucao() + atividade.getPercentual() > 100)
-            throw new RuntimeException("Limite 100% da Tarefa ultrapassado");
+        /*if (getPercentualConclucao() + atividade.getPercentual() > 100)
+            throw new RuntimeException("Limite 100% da Tarefa ultrapassado");*/
 
         this.itens.add(atividade);
         atividade.setTarefa(this);

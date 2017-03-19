@@ -2,4 +2,6 @@
     <string name="app_name">AndroidIntro</string>
     <string name="btn_send">SEND</string>
     <string name="segunda_tela">SEGUNDA TELA</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="salvar">Salvar</string>
 </resources>
