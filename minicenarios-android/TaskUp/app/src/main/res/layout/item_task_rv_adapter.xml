@@ -5,7 +5,8 @@
     android:layout_height="70dp"
     android:gravity="center"
     android:foreground="?android:selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    >
 
     <TextView
         android:id="@+id/tv_task_prioridade"
@@ -50,9 +51,11 @@
         android:textStyle="bold"
         android:layout_gravity="center"/>
 
+
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/forward_small"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/chevron_right"
+        android:tint="@color/md_blue_500"/>
 
 </LinearLayout>

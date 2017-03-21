@@ -8,13 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.List;
 
-import codes.wise.taskup.adapter.ListTaskAdapter;
 import codes.wise.taskup.adapter.RecyclerViewListTaskAdapter;
 import codes.wise.taskup.dao.TarefaRepository;
 import codes.wise.taskup.model.Tarefa;
@@ -25,6 +21,8 @@ public class ListTaskActivity extends AppCompatActivity {
     private RecyclerView.Adapter rvAdapter;
     private RecyclerView.LayoutManager rvLayoutManager;
 
+    private TarefaRepository tarefaDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +30,7 @@ public class ListTaskActivity extends AppCompatActivity {
 
         rvTarefas = (RecyclerView) findViewById(R.id.lst_tarefas);
 
-   /*     mlvTarefas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-
-                Tarefa tarefa = (Tarefa) adapterView.getItemAtPosition(pos);
-
-                Intent intent = new Intent(ListTaskActivity.this, ShowTaskActivity.class);
-                intent.putExtra("tarefa_id", tarefa.getId());
-                startActivity(intent);
-
-            }
-        });*/
+        tarefaDao = new TarefaRepository(Tarefa.class);
 
     }
 
@@ -51,7 +38,7 @@ public class ListTaskActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        carregarTarefas();
+        loadTasks();
     }
 
     public void abrirAtividades(Tarefa tarefa){
@@ -84,23 +71,10 @@ public class ListTaskActivity extends AppCompatActivity {
         startActivity(formTaskIntent);
     }
 
-    public void carregarTarefas(){
-        //TarefaDAO dao = new TarefaDAO(this);
+    public void loadTasks(){
 
-        //List<Tarefa> tarefas = Tarefa.listAll(Tarefa.class);  //dao.todos();
+        List<Tarefa> tarefas = tarefaDao.all();
 
-        /*for (Tarefa t : tarefas){
-            List<Atividade> atividades = Atividade.find(Atividade.class, "tarefa = ?", String.valueOf(t.getId()));
-            for (Atividade a: atividades) {
-                t.addItem(a);
-            }
-        }*/
-
-        TarefaRepository dao = new TarefaRepository(Tarefa.class);
-        List<Tarefa> tarefas = dao.all();
-        /*ArrayAdapter<Tarefa> adapter = new ListTaskAdapter(this, R.layout.item_task_adapter, tarefas); //new ArrayAdapter<Tarefa>(this, android.R.layout.simple_list_item_1, tarefas);
-
-        mlvTarefas.setAdapter(adapter);*/
         rvTarefas.setHasFixedSize(true);
 
         //Get a Layout for the RecyclerView
@@ -109,7 +83,5 @@ public class ListTaskActivity extends AppCompatActivity {
 
         rvAdapter = new RecyclerViewListTaskAdapter(this, tarefas);
         rvTarefas.setAdapter(rvAdapter);
-
-
     }
 }

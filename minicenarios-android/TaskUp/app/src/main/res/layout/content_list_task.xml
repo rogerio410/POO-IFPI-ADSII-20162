@@ -10,9 +10,8 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_light"
-        android:fontFamily="casual"
+        android:textColor="@color/md_cyan_800"
+        android:fontFamily="sans-serif"
         android:text="@string/my_tasks" />
 
     <android.support.v7.widget.RecyclerView

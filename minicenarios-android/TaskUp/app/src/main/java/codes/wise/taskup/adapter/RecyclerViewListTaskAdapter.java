@@ -1,11 +1,15 @@
 package codes.wise.taskup.adapter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,16 +33,15 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        //Respresenta uma linha na lista. Faz o bind dos elementos.
+        //Representa uma linha na lista. Faz o bind dos elementos.
         private TextView tvDescricao;
         private TextView tvPrioridade;
         private TextView tvDataLimite;
         private TextView tvPercentual;
-        private View item;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.item = itemView;
+
             tvDescricao = (TextView) itemView.findViewById(R.id.tv_task_descricao);
             tvPrioridade = (TextView) itemView.findViewById(R.id.tv_task_prioridade);
             tvDataLimite = (TextView) itemView.findViewById(R.id.tv_task_dataLimite);
@@ -49,11 +52,11 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public RecyclerViewListTaskAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Responsavel por inflar o layout dos itens
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_adapter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_rv_adapter, parent, false);
 
-        ViewHolder vh = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
 
-        return vh;
+        return holder;
     }
 
     @Override
@@ -66,18 +69,48 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
         holder.tvDataLimite.setText(tarefa.getStringDataLimite());
         holder.tvPercentual.setText(String.valueOf(tarefa.getPercentualConclucao()));
 
+        //Click no card
         setupOnClickListener(holder, tarefa);
 
+        //Long Click no Card
+        setupOnLongClickListener(holder, tarefa);
+
+
+    }
+
+    private void setupOnLongClickListener(final ViewHolder holder, Tarefa tarefa) {
+
+        holder.itemView.setLongClickable(true);
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                final Snackbar snack = Snackbar.make(holder.itemView, "Click Long no Card", Snackbar.LENGTH_INDEFINITE);
+
+                snack.setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snack.dismiss();
+                    }
+                });
+
+                snack.show();
+
+                return true;
+            }
+        });
     }
 
     private void setupOnClickListener(ViewHolder holder, final Tarefa tarefa) {
 
-        holder.item.setOnClickListener(new View.OnClickListener() {
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((ListTaskActivity)activity).abrirAtividades(tarefa);
             }
         });
+
     }
 
     @Override
