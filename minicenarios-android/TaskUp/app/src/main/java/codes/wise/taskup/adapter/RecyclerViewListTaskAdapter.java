@@ -93,9 +93,6 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private void setupOnLongClickListener(final ViewHolder holder, final Tarefa tarefa) {
 
-        //Habilitar Click Long no item da RecyclerView
-//        holder.itemView.setLongClickable(true);
-
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -147,6 +144,5 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
     public int getItemCount() {
         return tarefas.size();
     }
-
 
 }
