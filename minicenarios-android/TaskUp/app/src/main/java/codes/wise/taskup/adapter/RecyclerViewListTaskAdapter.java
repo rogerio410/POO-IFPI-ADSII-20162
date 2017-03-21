@@ -3,8 +3,10 @@ package codes.wise.taskup.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import codes.wise.taskup.ListTaskActivity;
 import codes.wise.taskup.R;
+import codes.wise.taskup.dao.TarefaRepository;
 import codes.wise.taskup.model.Tarefa;
 
 /**
@@ -26,10 +29,12 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
     private Activity activity;
     private List<Tarefa> tarefas;
     private Tarefa tarefa;
+    private TarefaRepository tarefaRepo;
 
-    public RecyclerViewListTaskAdapter(Activity activity, List<Tarefa> tarefas){
+    public RecyclerViewListTaskAdapter(Activity activity, List<Tarefa> tarefas, TarefaRepository repo) {
         this.activity = activity;
         this.tarefas = tarefas;
+        this.tarefaRepo = repo;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -74,32 +79,6 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
 
         //Long Click no Card
         setupOnLongClickListener(holder, tarefa);
-
-
-    }
-
-    private void setupOnLongClickListener(final ViewHolder holder, Tarefa tarefa) {
-
-        holder.itemView.setLongClickable(true);
-
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                final Snackbar snack = Snackbar.make(holder.itemView, "Click Long no Card", Snackbar.LENGTH_INDEFINITE);
-
-                snack.setAction("Ok", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        snack.dismiss();
-                    }
-                });
-
-                snack.show();
-
-                return true;
-            }
-        });
     }
 
     private void setupOnClickListener(ViewHolder holder, final Tarefa tarefa) {
@@ -110,7 +89,58 @@ public class RecyclerViewListTaskAdapter extends RecyclerView.Adapter<RecyclerVi
                 ((ListTaskActivity)activity).abrirAtividades(tarefa);
             }
         });
+    }
 
+    private void setupOnLongClickListener(final ViewHolder holder, final Tarefa tarefa) {
+
+        //Habilitar Click Long no item da RecyclerView
+//        holder.itemView.setLongClickable(true);
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                //Exibe um Popmenu com opcoes sobre o item clicado longamente
+
+                PopupMenu popupMenu = new PopupMenu(activity, holder.itemView);
+                popupMenu.getMenuInflater().inflate(R.menu.popup_list_task, popupMenu.getMenu());
+
+                MenuItem remover = popupMenu.getMenu().getItem(0);
+
+                setupPopupClickRemover(remover, tarefa);
+
+                popupMenu.show();
+
+                return true;
+            }
+
+            private void setupPopupClickRemover(MenuItem remover, final Tarefa tarefa) {
+
+                remover.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        //Remove tarefa selecionada
+                        tarefaRepo.delete(tarefa);
+
+                        final Snackbar snack = Snackbar.make(holder.itemView, "Removido: " + tarefa.getDescricao(), Snackbar.LENGTH_LONG);
+
+                        snack.setAction(R.string.ok, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                snack.dismiss();
+                            }
+                        });
+
+                        //Atualiza a lista: atualiza o layout com o item removido apenas após contruir a SnackBar.
+                        ((ListTaskActivity)activity).loadTasks(); //TODO: verificar recurso de Notficacao do Adapter.
+
+                        snack.show();
+
+                        return false;
+                    }
+                });
+            }
+        });
     }
 
     @Override

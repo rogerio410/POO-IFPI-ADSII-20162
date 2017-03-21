@@ -28,4 +28,12 @@ public class TarefaRepository extends SugarAbstractRepository<Tarefa> {
 
         return tarefas;
     }
+
+    @Override
+    public void delete(Tarefa tarefa) {
+        for (Atividade a:tarefa.getItens()) {
+            a.delete();
+        }
+        super.delete(tarefa);
+    }
 }

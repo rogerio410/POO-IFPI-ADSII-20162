@@ -21,6 +21,6 @@
         app:fabSize="normal"
         android:onClick="addTask"
         app:elevation="13dp"
-        app:backgroundTint="@android:color/holo_blue_dark" />
+        app:backgroundTint="@color/md_blue_500" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -21,7 +21,7 @@ public class ListTaskActivity extends AppCompatActivity {
     private RecyclerView.Adapter rvAdapter;
     private RecyclerView.LayoutManager rvLayoutManager;
 
-    private TarefaRepository tarefaDao;
+    private TarefaRepository tarefaRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class ListTaskActivity extends AppCompatActivity {
 
         rvTarefas = (RecyclerView) findViewById(R.id.lst_tarefas);
 
-        tarefaDao = new TarefaRepository(Tarefa.class);
+        tarefaRepo = new TarefaRepository(Tarefa.class);
 
     }
 
@@ -73,7 +73,7 @@ public class ListTaskActivity extends AppCompatActivity {
 
     public void loadTasks(){
 
-        List<Tarefa> tarefas = tarefaDao.all();
+        List<Tarefa> tarefas = tarefaRepo.all();
 
         rvTarefas.setHasFixedSize(true);
 
@@ -81,7 +81,7 @@ public class ListTaskActivity extends AppCompatActivity {
         LinearLayoutManager layout = new LinearLayoutManager(this);
         rvTarefas.setLayoutManager(layout);
 
-        rvAdapter = new RecyclerViewListTaskAdapter(this, tarefas);
+        rvAdapter = new RecyclerViewListTaskAdapter(this, tarefas, tarefaRepo);
         rvTarefas.setAdapter(rvAdapter);
     }
 }

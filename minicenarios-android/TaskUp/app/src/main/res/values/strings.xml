@@ -24,5 +24,6 @@
     <string name="idiom">Idioma</string>
     <string name="portuguese">Português</string>
     <string name="english">English</string>
+    <string name="ok" translatable="false">Ok</string>
 
 </resources>
