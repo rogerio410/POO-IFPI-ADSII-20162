@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="codes.wise.androidintro2.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/md_blue_grey_50">
 
     <TextView
         android:id="@+id/tv_hello"
@@ -15,7 +16,7 @@
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:background="@color/colorAccent"/>
+        />
 
     <Button
         android:layout_width="match_parent"
@@ -26,7 +27,9 @@
     <ListView
         android:id="@+id/lv_produtos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        />
     
 
 </LinearLayout>

@@ -33,4 +33,8 @@ public class Produto extends SugarRecord{
     public String getNome() {
         return nome;
     }
+
+    public double getPreco() {
+        return preco;
+    }
 }

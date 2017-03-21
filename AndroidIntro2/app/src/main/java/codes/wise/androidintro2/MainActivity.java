@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import codes.wise.androidintro2.adapter.ListProdutoAdapter;
 import codes.wise.androidintro2.models.Produto;
 
 public class MainActivity extends AppCompatActivity {
@@ -158,8 +159,9 @@ public class MainActivity extends AppCompatActivity {
 
         List<Produto> produtos = Produto.listAll(Produto.class);
 
-        ArrayAdapter<Produto> adapter =
-                new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_1, produtos);
+        //ArrayAdapter<Produto> adapter =
+         //       new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_1, produtos);
+        ListProdutoAdapter adapter = new ListProdutoAdapter(this, R.layout.produto_list_item, produtos);
 
         lvProdutos.setAdapter(adapter);
 
