@@ -11,8 +11,6 @@ public class Produto extends SugarRecord{
     private String nome;
     private double preco;
 
-    private boolean removido;
-
     public Produto() {
     }
 

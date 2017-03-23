@@ -25,6 +25,17 @@ public class ListProdutoAdapter extends ArrayAdapter<Produto> {
     private int layoutId;
     private List<Produto> produtos;
 
+    public class ViewHolder{
+
+        protected TextView tvNome;
+        protected TextView tvPreco;
+
+        public ViewHolder(View view) {
+            tvNome = (TextView) view.findViewById(R.id.tv_produto_nome);
+            tvPreco = (TextView) view.findViewById(R.id.tv_produto_preco);
+        }
+    }
+
     public ListProdutoAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Produto> objects) {
         super(context, resource, objects);
         this.layoutId = resource;
@@ -35,20 +46,25 @@ public class ListProdutoAdapter extends ArrayAdapter<Produto> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        ViewHolder vh;
+
+        Produto produto = this.produtos.get(position);
 
         if (convertView == null){
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(this.layoutId, parent, false);
+
+            vh = new ViewHolder(convertView);
+            convertView.setTag(vh);
+
+        }else{
+            vh = (ViewHolder) convertView.getTag();
         }
 
-        TextView tvNome = (TextView) convertView.findViewById(R.id.tv_produto_nome);
-        TextView tvPreco = (TextView) convertView.findViewById(R.id.tv_produto_preco);
-
-        Produto produto = this.produtos.get(position);
-
-        tvNome.setText(produto.getNome());
-        tvPreco.setText("R$ " + produto.getPreco());
+        vh.tvNome.setText(produto.getNome());
+        vh.tvPreco.setText("R$ " + produto.getPreco());
 
         return convertView;
     }
+
 }

@@ -1,32 +1,29 @@
 package codes.wise.androidintro2;
 
 import android.content.DialogInterface;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import codes.wise.androidintro2.adapter.ListProdutoAdapter;
+import codes.wise.androidintro2.adapter.ListProdutoRecyclerViewAdapter;
 import codes.wise.androidintro2.models.Produto;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private ListView lvProdutos;
+    private RecyclerView rvProdutos;
     private Produto produtoSelecionado;
 
     @Override
@@ -34,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Binding
-        lvProdutos = (ListView) findViewById(R.id.lv_produtos);
+        rvProdutos = (RecyclerView) findViewById(R.id.rv_produtos);
+
+       /* //Binding
+        rvProdutos = (ListView) findViewById(R.id.lv_produtos);
 
         //Listeners
-        lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        rvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                 Produto produto = (Produto) adapterView.getItemAtPosition(pos);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lvProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        rvProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //...
-        registerForContextMenu(lvProdutos);
+        registerForContextMenu(rvProdutos);*/
 
     }
 
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "Criacao do Context Menu");
 
         switch (v.getId()){
-            case R.id.lv_produtos:
+            case R.id.rv_produtos:
                 MenuItem remover = menu.add("Remover");
                 MenuItem estoque = menu.add("Ver Estoque");
 
@@ -161,9 +160,13 @@ public class MainActivity extends AppCompatActivity {
 
         //ArrayAdapter<Produto> adapter =
          //       new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_1, produtos);
-        ListProdutoAdapter adapter = new ListProdutoAdapter(this, R.layout.produto_list_item, produtos);
+        //ListProdutoAdapter adapter = new ListProdutoAdapter(this, R.layout.produto_list_item, produtos);
 
-        lvProdutos.setAdapter(adapter);
+        ListProdutoRecyclerViewAdapter adapter = new ListProdutoRecyclerViewAdapter(this, produtos);
+
+        rvProdutos.setAdapter(adapter);
+
+        rvProdutos.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
